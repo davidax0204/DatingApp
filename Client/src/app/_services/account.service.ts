@@ -23,7 +23,6 @@ export class AccountService {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           console.log('from login', user);
-
           this.currentUserSource.next(user);
         }
       })
