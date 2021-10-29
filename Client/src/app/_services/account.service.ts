@@ -22,8 +22,7 @@ export class AccountService {
         const user = response;
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
-          console.log('from login', user);
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
       })
     );
@@ -41,7 +40,11 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
-    if (user.token) {
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? (user.roles = roles) : user.roles.push(roles);
+    localStorage.setItem('user', JSON.stringify(user));
+    if (user) {
       this.currentUserSource.next(user);
     }
   }
@@ -50,5 +53,9 @@ export class AccountService {
     localStorage.removeItem('user');
     this.currentUserSource.next(null);
     // this.currentUserSource.next(1);
+  }
+
+  getDecodedToken(token) {
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }

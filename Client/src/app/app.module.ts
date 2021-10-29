@@ -25,6 +25,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/data-input/data-input.component';
+import { AdminPannelComponent } from './admin/admin-pannel/admin-pannel.component';
+import { HasRoleDirective } from './_derectives/has-role.directive';
 
 
 
@@ -45,6 +47,8 @@ import { DateInputComponent } from './_forms/data-input/data-input.component';
     MemberEditComponent,
     TextInputComponent,
     DateInputComponent,
+    AdminPannelComponent,
+    HasRoleDirective,
 
   ],
   imports: [

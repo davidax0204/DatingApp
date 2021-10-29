@@ -62,7 +62,6 @@ export class MembersService {
   }
 
   updateMember(member: Member) {
-    debugger;
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
         const index = this.members.indexOf(member);
@@ -86,7 +85,6 @@ export class MembersService {
 
     return this.http.get<T>(url, { observe: 'response', params }).pipe(
       map((response) => {
-        debugger;
         paginatedResult.result = response.body;
         if (response.headers.get('Pagination') != null) {
           paginatedResult.pagination = JSON.parse(
